@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PUMP it UP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <nav>
+        <h1><img src="{{ url_for('static', filename='logo.png') }}" alt="PUMP it UP Logo" class="logo"> PUMP it UP</h1>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('calculators') }}">Calculators</a></li>
+            <li><a href="{{ url_for('nutrition') }}">Nutrition</a></li>
+            <li><a href="{{ url_for('workouts') }}">Workouts</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            {% if session.username %}
+                <li><a href="{{ url_for('profile') }}">Profile ({{ session.username }})</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+            <li><button id="dark-mode-toggle">Dark Mode</button></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

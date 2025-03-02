@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Fitness Calculators</h2>
+    <div class="tabs">
+        <button class="tab-button" onclick="openTab('basic')">Basic</button>
+        {% if is_premium %}
+            <button class="tab-button" onclick="openTab('premium')">Premium</button>
+        {% endif %}
+    </div>
+    <div id="basic" class="tab-content">
+        <form method="POST" id="calcForm" onsubmit="return validateCalcForm()">
+            <label>Weight (kg):</label><input type="number" step="0.1" name="weight" id="weight" required class="small-input"><br>
+            <label>Height (m):</label><input type="number" step="0.01" name="height" id="height" required class="small-input"><br>
+            <label>Height (cm, for BMR):</label><input type="number" name="height_cm" id="height_cm" required class="small-input"><br>
+            <label>Age:</label><input type="number" name="age" id="age" required class="small-input"><br>
+            <label>Gender (male/female):</label><input type="text" name="gender" id="gender" required class="small-input"><br>
+            <label>Activity Level:</label>
+            <select name="activity" id="activity" class="small-select">
+                <option value="sedentary">Sedentary</option>
+                <option value="light">Light</option>
+                <option value="moderate">Moderate</option>
+                <option value="active">Active</option>
+            </select><br>
+            <button type="submit">Calculate</button>
+        </form>
+        <p id="calc-error" class="error"></p>
+        <p class="main-text">BMI: {{ results.bmi if results.bmi != "Invalid" else "Error in calculation" }}</p>
+        <p class="main-text">BMR: {{ results.bmr if results.bmr != "Invalid" else "Error in calculation" }} calories/day</p>
+        <p class="main-text">Protein: {{ results.protein if results.protein != "Invalid" else "Error in calculation" }} g/day</p>
+        <p class="main-text">Calories: {{ results.calories if results.calories != "Invalid" else "Error in calculation" }} calories/day</p>
+    </div>
+    {% if is_premium %}
+    <div id="premium" class="tab-content" style="display:none;">
+        <form method="POST">
+            <label>Weight (kg):</label><input type="number" step="0.1" name="weight" required class="small-input"><br>
+            <label>Goal:</label>
+            <select name="goal" class="small-select">
+                <option value="gain">Weight Gain</option>
+                <option value="loss">Weight Loss</option>
+            </select><br>
+            <button type="submit">Calculate Premium</button>
+        </form>
+        <p class="main-text">Creatine: {{ results.creatine if results.creatine != "Invalid" else "Error in calculation" }} g/day</p>
+        <p class="main-text">Nutrition - Calories: {{ results.nutrition.calories if results.nutrition.calories != "Invalid" else "Error in calculation" }} calories/day, Protein: {{ results.nutrition.protein if results.nutrition.protein != "Invalid" else "Error in calculation" }} g/day</p>
+    </div>
+    {% endif %}
+{% endblock %}

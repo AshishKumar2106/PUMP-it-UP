@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Your Profile</h2>
+    <p class="main-text"><strong>Username:</strong> {{ user[0] }}</p>
+    <p class="main-text"><strong>Email:</strong> {{ user[1] }}</p>
+    <p class="main-text"><strong>Membership:</strong> {{ 'Premium' if user[2] else 'Free' }}</p>
+    <p class="main-text"><strong>Weight:</strong> {{ user[3] if user[3] else 'Not set' }} kg</p>
+    <p class="main-text"><strong>Height:</strong> {{ user[4] if user[4] else 'Not set' }} m</p>
+    <p class="main-text"><strong>Age:</strong> {{ user[5] if user[5] else 'Not set' }}</p>
+    <p class="main-text"><strong>Gender:</strong> {{ user[6] if user[6] else 'Not set' }}</p>
+    
+    {% if user[2] %}
+        <h3 class="premium-title">Premium Dashboard</h3>
+        <ul class="premium-list">
+            <li class="main-text"><strong>Workout Goal:</strong> Build Muscle</li>
+            <li class="main-text"><strong>Daily Steps:</strong> Aim for 10,000</li>
+            <li class="main-text"><strong>Water Intake:</strong> 3L/day</li>
+            <li class="main-text"><strong>Sleep Target:</strong> 7-8 hours</li>
+            <li class="main-text"><strong>Next Goal:</strong> Increase bench press by 10kg</li>
+            <li class="main-text"><strong>Favorite Exercise:</strong> Deadlifts</li>
+            <li class="main-text"><strong>Calories Burned (est):</strong> 500 cal/day</li>
+            <li class="main-text"><strong>Protein Goal:</strong> 150g/day</li>
+            <li class="main-text"><strong>Last Workout:</strong> Yesterday - Full Body</li>
+            <li class="main-text"><strong>Motivation:</strong> "Keep grinding!"</li>
+            <li class="main-text"><strong>Challenge:</strong> 30-day plank challenge</li>
+            <li class="main-text"><strong>Reward:</strong> New gym gear after 10 workouts</li>
+            <li class="main-text"><strong>Trainer Tip:</strong> Focus on form over weight</li>
+            <li class="main-text"><strong>Community:</strong> Join our Discord for tips!</li>
+            <li class="main-text"><strong>Streak:</strong> 5 days active</li>
+        </ul>
+        <h3 class="premium-title">Daily Workout Status (Flow)</h3>
+        <div class="flow-diagram">
+            <div class="step completed">Warm-Up (5 min)</div>
+            <div class="step completed">Cardio (20 min)</div>
+            <div class="step in-progress">Strength (30 min)</div>
+            <div class="step">Cool-Down (10 min)</div>
+        </div>
+    {% endif %}
+    
+    <h3>Progress Tracker</h3>
+    {% if progress %}
+        <ul class="progress-list">
+        {% for entry in progress %}
+            <li class="main-text">{{ entry[0] }}: {{ entry[1] }} kg</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="main-text">No progress logged yet!</p>
+    {% endif %}
+{% endblock %}

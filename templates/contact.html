@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Contact Us</h2>
+    <form method="POST">
+        <label>Name:</label><input type="text" name="name" required><br>
+        <label>Email:</label><input type="email" name="email" required><br>
+        <label>Message:</label><textarea name="message" required></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+    <p class="main-text">We’ll respond within 24 hours!</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Welcome to PUMP it UP!</h2>
+    <p class="main-text">Your ultimate fitness journey starts here. Log in to unlock premium tools and transform your body with our expert guidance!</p>
+    <p class="main-text"><strong>Daily Motivation:</strong> {{ quote }}</p>
+    <img src="{{ url_for('static', filename='gym1.jpg') }}" alt="Gym" class="content-img">
+{% endblock %}

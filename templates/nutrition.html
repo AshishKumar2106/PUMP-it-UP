@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Nutrition Tips</h2>
+    <p class="main-text"><strong>Free Tip:</strong> Stay hydrated—drink 2-3 liters of water daily!</p>
+    {% if is_premium %}
+        <h3 class="premium-title">Premium Nutrition Guide</h3>
+        <div class="premium-content">
+            <p class="main-text"><strong>Macros:</strong> Target 40% carbs, 30% protein, and 30% fat daily for optimal performance.</p>
+            <p class="main-text"><strong>Meal Timing:</strong> Eat every 3 hours to maintain steady energy levels throughout the day.</p>
+            <p class="main-text"><strong>Supplements:</strong> Use whey protein post-workout for recovery and BCAAs during workouts for endurance.</p>
+        </div>
+        <h3 class="premium-title">Detailed Diet Charts</h3>
+        <div class="diet-charts">
+            <h4>Weight Gain (2500-3000 calories/day)</h4>
+            <ul class="diet-list">
+                <li class="main-text"><strong>Breakfast:</strong> 2 eggs, 100g oats, 1 banana, 20g peanut butter (700 cal)</li>
+                <li class="main-text"><strong>Snack:</strong> 30g almonds, 1 apple (250 cal)</li>
+                <li class="main-text"><strong>Lunch:</strong> 200g chicken breast, 150g brown rice, broccoli (850 cal)</li>
+                <li class="main-text"><strong>Snack:</strong> 1 protein shake (30g whey), 1 slice whole-grain bread (350 cal)</li>
+                <li class="main-text"><strong>Dinner:</strong> 150g beef, 200g sweet potato, spinach (750 cal)</li>
+            </ul>
+            <h4>Weight Loss (1500-1800 calories/day)</h4>
+            <ul class="diet-list">
+                <li class="main-text"><strong>Breakfast:</strong> 150g Greek yogurt, 50g berries (300 cal)</li>
+                <li class="main-text"><strong>Snack:</strong> 10g almonds (70 cal)</li>
+                <li class="main-text"><strong>Lunch:</strong> 100g turkey, mixed greens, 1 tbsp olive oil (450 cal)</li>
+                <li class="main-text"><strong>Snack:</strong> 1 boiled egg (80 cal)</li>
+                <li class="main-text"><strong>Dinner:</strong> 120g salmon, 150g steamed veggies (500 cal)</li>
+            </ul>
+        </div>
+    {% endif %}
+    <img src="{{ url_for('static', filename='gym2.jpg') }}" alt="Nutrition" class="content-img">
+{% endblock %}
